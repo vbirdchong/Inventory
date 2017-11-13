@@ -58,5 +58,17 @@ public final class ProductContract {
         // image of the product
         // TYPE: TEXT
         public final static String COLUMN_PRODUCT_PICTURE = "picture";
+
+        public final static int INVALID_PRICE = -1;
+
+        public final static int INVALID_QUANTITY = -1;
+
+        public final static boolean isValidPrice(Integer price) {
+            return price <= INVALID_PRICE;
+        }
+
+        public final static boolean isValidQuantity(Integer quantity) {
+            return quantity <= INVALID_QUANTITY;
+        }
     }
 }
