@@ -17,6 +17,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailsActivity"></activity>
+
+        <provider
+            android:name=".data.ProductProvider"
+            android:authorities="com.example.cccho.inventory"
+            android:exported="false" />
     </application>
 
 </manifest>

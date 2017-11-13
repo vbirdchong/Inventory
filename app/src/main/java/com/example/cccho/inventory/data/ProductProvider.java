@@ -53,7 +53,9 @@ public class ProductProvider extends ContentProvider {
 
         Cursor cursor;
 
+
         int match = sUriMatcher.match(uri);
+        Log.i(LOG_TAG, "before query " + uri + ", match " + match);
         switch (match) {
             case PRODUCTS:
                 cursor = database.query(TABLE_NAME,
@@ -194,7 +196,60 @@ public class ProductProvider extends ContentProvider {
     }
 
     private int updateProduct(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        // TODO: 2017/11/13
+
+        if (values.containsKey(ProductContract.ProductEntry.COLUMN_PRODUCT_NAME)) {
+            String name = values.getAsString(ProductContract.ProductEntry.COLUMN_PRODUCT_NAME);
+            if (name == null) {
+                throw new IllegalArgumentException("Product require a name");
+            }
+        }
+
+        if (values.containsKey(ProductContract.ProductEntry.COLUMN_PRODUCT_PRICE)) {
+            Integer price = values.getAsInteger(ProductContract.ProductEntry.COLUMN_PRODUCT_PRICE);
+            if (price == null || !ProductContract.ProductEntry.isValidPrice(price)) {
+                throw new IllegalArgumentException("Product require a valid price");
+            }
+        }
+
+        if (values.containsKey(ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY)) {
+            Integer quantity = values.getAsInteger(ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY);
+            if (quantity == null || !ProductContract.ProductEntry.isValidQuantity(quantity)) {
+                throw new IllegalArgumentException("Product require a valid quantity");
+            }
+        }
+
+        if (values.containsKey(ProductContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_NAME)) {
+            String supplierName = values.getAsString(ProductContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_NAME);
+            if (supplierName == null ) {
+                throw new IllegalArgumentException("Product require a valid supplier name");
+            }
+        }
+
+        if (values.containsKey(ProductContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL_ADDRESS)) {
+            String supplierEmailAddress = values.getAsString(ProductContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL_ADDRESS);
+            if (supplierEmailAddress == null ) {
+                throw new IllegalArgumentException("Product require a valid supplier email address");
+            }
+        }
+
+        if (values.containsKey(ProductContract.ProductEntry.COLUMN_PRODUCT_PICTURE)) {
+            String image = values.getAsString(ProductContract.ProductEntry.COLUMN_PRODUCT_PICTURE);
+            if (image == null ) {
+                throw new IllegalArgumentException("Product require a valid picture");
+            }
+        }
+
+        if (values.size() == 0) {
+            return 0;
+        }
+
+        SQLiteDatabase database = mProductDbHelper.getWritableDatabase();
+        int rowsUpdated = database.update(ProductContract.ProductEntry.TABLE_NAME, values, selection, selectionArgs);
+
+        if (rowsUpdated != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
         return 0;
     }
     
