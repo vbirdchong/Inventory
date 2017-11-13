@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Inventory</string>
+
+    <!-- Title text for the empty view, which describes the empty store [CHAR LIMIT=50] -->
+    <string name="empty_view_title_text">No product in the store...</string>
+
+    <!-- Subtitle text for the empty view that prompts the user to add a product [CHAR LIMIT=50] -->
+    <string name="empty_view_subtitle_text">Get started by adding a product</string>
+
+    <!-- Label for overflow menu option that inserts fake product data into the app [CHAR LIMIT=20] -->
+    <string name="action_insert_dummy_data">Insert Dummy Data</string>
+
+    <!-- Label for overflow menu option that deletes all products data in the app [CHAR LIMIT=20] -->
+    <string name="action_delete_all_entries">Delete All Products</string>
+
+    <!-- Title text for product in DetailActivity -->
+    <string name="product_name_title">Product</string>
+
+    <!-- Title text for product price in DetailActivity -->
+    <string name="price_title">Price</string>
+
+    <!-- Title text for product quantity in DetailActivity -->
+    <string name="quantity_title">Quantity</string>
+
+    <!-- Title text for supplier  -->
+    <string name="supplier_name_title">Supplier</string>
+
+    <!-- Hint for supplier name-->
+    <string name="supplier_name_hint">Tomas Abyu</string>
+
+    <!-- Hint for supplier email address -->
+    <string name="supplier_email_address_hint">tomas_abyu@gmail.com</string>
+
+    <string name="picture">Picture</string>
+
+    <string name="add_picture">Add Picture</string>
+</resources>
