@@ -15,7 +15,8 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="5"
+        android:layout_weight="4"
+        android:layout_marginLeft="24dp"
         android:orientation="vertical">
 
         <TextView
@@ -26,13 +27,29 @@
             android:layout_weight="2"
             android:textSize="24sp"/>
 
-        <TextView
-            android:id="@+id/id_price"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Price"
-            android:textSize="18sp"
-            android:layout_weight="1"/>
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/id_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textSize="18sp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="$"
+                android:layout_weight="1"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+
 
         <TextView
             android:id="@+id/id_quantity"
@@ -44,9 +61,11 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/id_sale"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:layout_weight="2"
+        android:paddingTop="10dp"
         android:src="@drawable/ic_shopping_cart"/>
 
 </LinearLayout>

@@ -33,7 +33,7 @@ public class ProductProvider extends ContentProvider {
 
     static {
         sUriMatcher.addURI(CONTENT_AUTHORITY, PATH_PRODUCTS, PRODUCTS);
-        sUriMatcher.addURI(CONTENT_AUTHORITY, PATH_PRODUCTS, PRODUCT_ID);
+        sUriMatcher.addURI(CONTENT_AUTHORITY, PATH_PRODUCTS + "/#", PRODUCT_ID);
     }
 
     @Override
@@ -157,6 +157,7 @@ public class ProductProvider extends ContentProvider {
         }
 
         Integer productPrice = values.getAsInteger(ProductContract.ProductEntry.COLUMN_PRODUCT_PRICE);
+
         if (productPrice == null || !ProductContract.ProductEntry.isValidPrice(productPrice)) {
             throw new IllegalArgumentException("Product price is not valid");
         }
@@ -250,7 +251,7 @@ public class ProductProvider extends ContentProvider {
             getContext().getContentResolver().notifyChange(uri, null);
         }
 
-        return 0;
+        return rowsUpdated;
     }
     
     private int deleteProduct(Uri uri, String selection, String[] selectionArgs) {

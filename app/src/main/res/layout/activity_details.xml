@@ -28,6 +28,7 @@
             android:id="@+id/product_name_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/hint_product_name"
             android:inputType="textCapWords"/>
 
         <TextView
@@ -42,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
+            android:hint="@string/hint_price"
             android:maxLength="5" />
 
         <TextView
@@ -70,6 +72,7 @@
                 android:layout_weight="2"
                 android:gravity="center"
                 android:inputType="number"
+                android:hint="@string/hint_quantity"
                 android:maxLength="4" />
 
             <ImageButton

@@ -10,6 +10,8 @@ import android.provider.BaseColumns;
 
 public final class ProductContract {
 
+    private final static String LOG_TAG = "ProductContract";
+
     private ProductContract() {}
 
     public static final String CONTENT_AUTHORITY = "com.example.cccho.inventory";
@@ -64,11 +66,11 @@ public final class ProductContract {
         public final static int INVALID_QUANTITY = -1;
 
         public final static boolean isValidPrice(Integer price) {
-            return price <= INVALID_PRICE;
+            return price > INVALID_PRICE;
         }
 
         public final static boolean isValidQuantity(Integer quantity) {
-            return quantity <= INVALID_QUANTITY;
+            return quantity > INVALID_QUANTITY;
         }
     }
 }

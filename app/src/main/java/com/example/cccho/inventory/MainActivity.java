@@ -1,9 +1,11 @@
 package com.example.cccho.inventory;
 
+import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
@@ -16,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.cccho.inventory.data.ProductContract;
 
@@ -78,8 +81,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
-                // TODO: 2017/11/13
-                //showDeleteConfirmationDialog();
+                showDeleteConfirmationDialog();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -89,15 +91,51 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      * Insert fake data
      */
     private void insertData() {
+        final String fakePictureUri = "content://com.android.providers.downloads.documents/document/10";
+
         ContentValues values = new ContentValues();
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_NAME, "ThinkPad");
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_PRICE, 10);
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, 1);
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_NAME, "Lenovo");
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL_ADDRESS, "test@lenovo.com");
-        values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_PICTURE, "hello");
+        values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_PICTURE, fakePictureUri);
 
         getContentResolver().insert(ProductContract.ProductEntry.CONTENT_URI, values);
+    }
+
+
+    private void showDeleteConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.delete_all_products_dialog_msg);
+        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked the "Delete All Pets" button
+                deleteData();
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked the "Cancel" button, so dismiss the dialog
+                // and continue editing the pet.
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        // Create and show the AlertDialog
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void deleteData() {
+        int rowsDelete = getContentResolver().delete(ProductContract.ProductEntry.CONTENT_URI, null, null);
+        if (rowsDelete > 0) {
+            Toast.makeText(this, getString(R.string.catalog_delete_products_successfully), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, getString(R.string.catalog_delete_products_no_data_need_to_delete), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -106,7 +144,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 ProductContract.ProductEntry._ID,
                 ProductContract.ProductEntry.COLUMN_PRODUCT_NAME,
                 ProductContract.ProductEntry.COLUMN_PRODUCT_PRICE,
-                ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY
+                ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY,
+                ProductContract.ProductEntry.COLUMN_PRODUCT_PICTURE
         };
 
         return new CursorLoader(this,

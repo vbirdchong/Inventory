@@ -34,4 +34,61 @@
     <string name="picture">Picture</string>
 
     <string name="add_picture">Add Picture</string>
+
+    <!-- Dialog msg to ask the user to confirm delete all products -->
+    <string name="delete_all_products_dialog_msg">Delete all products?</string>
+
+    <string name="delete">Delete</string>
+
+    <string name="cancel">Cancel</string>
+
+    <string name="catalog_delete_products_successfully">Delete products successfully</string>
+
+    <string name="catalog_delete_products_no_data_need_to_delete">No products need to delete</string>
+
+    <string name="detail_activity_title_new_product">New product</string>
+
+    <string name="detail_activity_title_edit_product">Edit product</string>
+
+    <string name="hint_product_name">ThinkPad</string>
+    
+    <string name="hint_price">1999</string>
+    
+    <string name="hint_quantity">99</string>
+
+    <!-- Text info for Save menu in detail activity-->
+    <string name="action_save">Save</string>
+
+    <!-- Text info for Delete menu in detail activity-->
+    <string name="action_delete">Delete</string>
+
+    <string name="action_order">Order more</string>
+
+    <string name="editor_insert_product_failed">Save product failed</string>
+
+    <string name="editor_insert_product_successful">Save product successful</string>
+
+    <string name="editor_update_product_failed">Update product failed</string>
+
+    <string name="editor_update_product_successful">Update product successful</string>
+
+    <string name="delete_dialog_msg">Delete this item?</string>
+
+    <string name="editor_delete_product_failed">Delete product failed</string>
+
+    <string name="editor_delete_product_successful">Delete product successful</string>
+
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+
+    <string name="discard">Discard</string>
+
+    <string name="keep_editing">Keep Editing</string>
+
+    <string name="form_pick_photos">Select photo</string>
+
+    <string name="email_subject">Order more products</string>
+
+    <string name="email_main_body">We need more products for this article: </string>
+
+    <string name="input_valid_info">Please input valid product info.</string>
 </resources>
